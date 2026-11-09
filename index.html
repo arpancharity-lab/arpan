@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cloudflare.com">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARPAN - అర్పణ</title>
+    <style>
+        /* 📱 డెస్క్‌టాప్ లో ఖచ్చితంగా వరుసకి 3 ఫోటోలు రావడానికి */
+        .items-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 20px !important;
+            margin: 25px 0 !important;
+        }
+
+        /* 📱 మొబైల్ ఫోన్ స్క్రీన్ సైజ్ కి ఆటోమేటిక్ గా ఫిట్ అయ్యే రూల్స్ */
+        @media (max-width: 768px) {
+            body {
+                border: 4px solid #cbd5e1 !important; /* ఫోన్ లో చుట్టూ బోర్డర్ సన్నబడుతుంది */
+            }
+            .container {
+                margin: 10px auto !important;
+                padding: 20px 15px !important;
+                border-radius: 12px !important;
+                max-width: 100% !important;
+            }
+            .items-grid {
+                grid-template-columns: repeat(1, 1fr) !important; /* ఫోన్ లో ఇమేజెస్ ఒకదాని కింద ఒకటి పర్ఫెక్ట్ గా ఫిట్ అవుతాయి */
+                gap: 15px !important;
+            }
+            .item-card img {
+                height: 220px !important; /* ఫోన్ లో ఫోటోల సైజ్ స్క్రీన్ కి తగ్గట్టుగా మారుతుంది */
+            }
+            .announcement-card {
+                padding: 15px !important;
+            }
+            .announcement-text {
+                font-size: 1.1rem !important; /* ఫోన్ లో టెక్స్ట్ సైజ్ అడ్జస్ట్మెంట్ */
+            }
+            .logo-box {
+                padding: 15px 20px !important;
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 10px !important;
+            }
+            .logo-box h1 {
+                font-size: 2.2rem !important;
+            }
+        }
+
+        /* Classic Cream Background and Thick Grey Border Theme */
+        html, body {
+            margin: 1;
+            padding: 1;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfbf7; /* Elegant Cream Background */
+            color: #2d3748;
+            border: 15px solid #cbd5e1; /* Outside border */
+            min-height: 100vh;
+        }
+        
+        /* Vibrant & Modern Colorful Gradient Header Banner */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6, #10b981); /* Rich Royal Blue, Sky Blue & Bright Emerald Green */
+            color: #f0f0f0; 
+            padding: 65px 20px;
+            text-align: center;
+            border-bottom: 4px solid #cbd5e1; 
+            position: relative;
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Modern Floating White Logo Box - Made Flexible for Logo Side-by-Side */
+        .logo-box {
+            background: #ffffff;
+            padding: 20px 45px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px; /* Space between logo image and text */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid #cbd5e1; 
+            position: relative;
+            max-width: 90%;
+            text-align: left;
+        }
+        
+        /* Head Side Logo Image Styling */
+        .header-logo-img {
+            height: 85px; /* Adjusted height to fit beautifully beside text */
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .logo-text-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Colorful Top Badge Text */
+        .badge-top {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #10b981; 
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+        
+        .logo-box h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #1e3a8a; 
+            line-height: 1;
+        }
+        
+        header p.tagline {
+            font-size: 1.35rem;
+            color:#f8f9fa; 
+            margin: 20px 0 0 0;
+            font-style: italic;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Main Website Inner Container with Thick Light Grey Border */
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: #f0f0f0
+            border-radius: 25px;
+            border: 6px solid #cbd5e1; 
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.01);
+        }
+        
+        h2 {
+            color: #111111;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #cbd5e1; 
+            padding-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        h2:first-of-type {
+            margin-top: 10px;
+        }
+        
+        p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+        
+        /* Inner About Card with Grey Border */
+        .about-card {
+            background-color: #f4f1ea; 
+            padding: 25px;
+            border-radius: 12px;
+            border: 4px solid #cbd5e1; 
+        }
+        
+        /* Item Cards Grid */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        /* Individual Card with Grey Border */
+        .item-card {
+            background: #ffffff; 
+            border-radius: 30px;
+            overflow: hidden;
+            border: 8px solid #cbd5e1; 
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background-color: #f7f9fa;
+        }
+        
+        .item-card span {
+            display: block;
+            padding: 15px;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1rem;
+            background: #fdfbf7;
+            border-top: 2px solid #cbd5e1;
+        }
+        
+        /* Contact Box with Grey Border */
+        .contact-box {
+            background: #fdfbf7;
+            border: 4px solid #cbd5e1; 
+            padding: 30px;
+            border-radius: 12px;
+        }
+        
+        .contact-item {
+            font-size: 1.1rem;
+            margin: 12px 0;
+            color: #2d3748;
+        }
+        
+        .highlight {
+            font-weight: 700;
+            color: #111111;
+            background: #ffffff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .map-container {
+            margin-top: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid #cbd5e1;
+            height: 380px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 35px 20px;
+            background: #ffffff;
+            color: #718096;
+            font-size: 0.9rem;
+            border-top: 2px solid #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Premium Colorful Gradient Header Area -->
+    <header>
+        <div class="logo-box">
+            <!-- Left Side: Logo Image Added Here -->
+            <img src="logo.jpg" alt="ARPAN Logo" class="header-logo-img" onerror="this.style.display='none';">
+            
+            <!-- Right Side: Heading Text -->
+            <div class="logo-text-container">
+                <div class="badge-top">•   మన సత్తుపల్లి లో    •</div>
+                <h1>ARPAN</h1>
+            </div>
+        </div>
+        <p class="tagline">"మీరు వాడని వస్తువు.. మరొకరి ముఖంలో ఆనందాన్ని నింపవచ్చు."</p>
+    </header>
+
+    <div class="container"><!-- ARPAN Announcement Counter Details Section -->
+<div class="arpan-counter-announcement" style="background-color: #f9f9f9; border: 2px solid #cbd5e1; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+    
+    
+    
+</div>
+
+        <!-- About Section -->
+        <h2>✨ మన లక్ష్యం (About Us)</h2>
+        <div class="about-card">
+            <p><b>ARPAN (అర్పణ)</b> అనేది ఒక ఉచిత సేవా వేదిక. మన ఇళ్లలో ఉపయోగించకుండా పక్కన పడేసిన వస్తువులను సేకరించి, నిజంగా అవసరమైన వారికి వాటిని చేరవేయడమే మా ముఖ్య ఉద్దేశం. సమాజంలో వస్తువుల వృధాను తగ్గించి, తోటివారికి సహాయం చేయాలనే ఆశయంతో సత్తుపల్లిలో ఈ పాయింట్ ప్రారంభించబడింది.</p>
+        </div>
+         
+            </p>
+        </div>
+        <!-- ARPAN Single Center Collect Point Image Patch -->
+        <div style="text-align: center; margin: 35px 0; padding: 10px; background-color: #ffffff; border: 4px solid #cbd5e1; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <img id="arpanTargetBanner" src="coloction point.jpg" alt="ARPAN Collect Point" style="width: 100%; max-width: 850px; height: auto; border-radius: 12px; display: inline-block; object-fit: cover;">
+
+            <p style="font-family: 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: bold; color: #1e3a8a; margin-top: 12px; margin-bottom: 5px;">
+                📍 మన సత్తుపల్లి సేవా కేంద్రం - వస్తువుల సేకరణ మరియు ఉచిత పంపిణీ పాయింట్
+            </p>
+        </div>
+
+     
+        </div>
+
+       
+    </div>
+    
+    <p <!-- What We Collect Section - 3 చొప్పున 6 పెద్ద ఇమేజ్ కార్డ్స్ మరియు సన్నని బోర్డర్లతో -->
+<h2 style="text-align: center;">📦 మనం ఏం సేకరిస్తాం? (What We Collect)</h2>
+<p style="text-align: center;">మీ ఇంట్లో ఉపయోగించకుండా ఉన్న కింది వస్తువులను మేము సేకరించి, అవసరమైన వారికి <b>పూర్తిగా ఉచితంగా</b> అందిస్తాము:</p>
+
+<div class="items-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 25px 0;">
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+       <img src="books.jpg" alt="Books" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">📚చదువుకునే పుస్తకాలు</span>
+    </div>
+
+                 <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <img src="baby cloth.jpg" alt="Baby Clothes" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">👕 బేబీ డ్రెస్సులు</span>
+    </div>
+
+
+    <!-- 3వ ఇమేజ్: బొమ్మలు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <img src="booktoy.jpg" alt="Toys" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">🤝 బొమ్మలు</span>
+    </div>
+
+    <!-- 4వ ఇమేజ్: స్కూల్ & కాలేజ్ బ్యాగులు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <img src="bags.jpg" alt="Bags" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">🎒 స్కూల్ & కాలేజ్ బ్యాగులు</span>
+    </div>
+
+    <!-- 5వ ఇమేజ్: పిల్లల ఆటబొమ్మలు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <img src="toy.jpg" alt="Kids Toys" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">🧸 పిల్లల ఆటబొమ్మలు</span>
+    </div>
+
+
+
+    <!-- 6వ ఇమేజ్: గృహోపకరణాలు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <img src="household.jpg" alt="Household Items" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">🏠 గృహోపకరణాలు</span>
+    </div>
+
+           <!-- 7వ ఇమేజ్: చలికాలం స్వెటర్లు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      <img src="sweaters.jpg" alt="Sweaters" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">🧥 చలికాలం స్వెటర్లు</span>
+    </div>
+
+    <!-- 8వ ఇమేజ్: ఉపయోగపడే ఇతర వస్తువులు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+       <img src="things.jpg" alt="Other Things" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">📦 ఉపయోగపడే ఇతర వస్తువులు</span>
+    </div>
+
+    <!-- 9వ ఇమేజ్: ఉపయోగించని పాత బట్టలు -->
+    <div class="item-card" style="background: #ffffff; border-radius: 16px; overflow: hidden; border: 2px solid #cbd5e1; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+       <img src="old cloths.jpg" alt="Old Clothes" onerror="this.src='https://placehold.co'" style="width: 100%; height: 300px; object-fit: cover; display: block;">
+        <span style="display: block; padding: 15px; font-weight: 600; color: #2d3748;">👕 ఉపయోగించని పాత బట్టలు</span>
+    </div>
+
+
+
+</div><!-- ఇమేజెస్ అన్నింటి కింద విడిగా వచ్చే అందమైన అనౌన్స్‌మెంట్ బాక్స్ -->
+<div class="announcement-card" style="background-color: #ffffff; border: 4px solid #cbd5e1; border-radius: 16px; padding: 25px; margin: 30px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05); clear: both; text-align: center; display: flex; flex-direction: column; align-items: center;">    
+    <!-- స్త్రీలకు శానిటరీ ప్యాడ్స్ ప్రకటన -->
+    <div class="announcement-item" style="display: flex; align-items: center; gap: 20px; padding: 15px 0; border-bottom: 2px dashed #cbd5e1;">
+        <span style="font-size: 2.2rem; flex-shrink: 0;">🌸</span>
+        <p style="font-family: 'Segoe UI', sans-serif; font-size: 1.5rem; font-weight: bold; color:#800000; text-shadow: 1px 1px 1px #d4af37; margin: 0; text-align: left; line-height: 1.5;">
+            ప్రయాణాలలో ఉన్న స్త్రీలకు మన కౌంటర్ వద్ద ఉచితముగా శానిటరీ ప్యాడ్  ఇవ్వబడును.
+        </p>
+    </div>
+    
+    <!-- పసి పిల్లలకు డైపర్స్ ప్రకటన -->
+    <div class="announcement-item" style="display: flex; align-items: center; gap: 20px; padding: 15px 0;">
+        <span style="font-size: 2.2rem; flex-shrink: 0;">👶</span>
+        <p style="font-family: 'Segoe UI', sans-serif; font-size: 1.5rem; font-weight: bold; color: #800000; text-shadow: 1px 1px 1px #d4af37; margin: 0; text-align: left; line-height: 1.5;">
+            ప్రయాణాలలో ఉన్న పసిపిల్లలకు మన కౌంటర్ వద్ద ఉచితముగా డైపర్  ఇవ్వబడును.
+        </p>
+    </div> 
+</div>
+
+
+</div>
+
+                     <!-- ARPAN Quality Donation Warning Notice Patch -->
+        <div style="background-color: #fff5f5; border: 3px solid #feb2b2; border-radius: 12px; padding: 25px; margin: 25px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: 'Segoe UI', sans-serif; text-align: center;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; width: 100%;">
+                <span style="font-size: 24px;">⚠️</span>
+                <h4 style="margin: 0; font-size: 1.25rem; color: #9b2c2c; font-weight: bold;">గమనిక (Important Notice):</h4>
+            </div>
+            <p style="margin: 0; font-size: 1.1rem; line-height: 1.7; color: #2d3748;">
+                దాతలు సమర్పించే బట్టలు, పుస్తకాలు లేదా మరేదైనా వస్తువులు అవతలి వారు వాడుకోవడానికి పనికిరానివిగా ఉంటే దయచేసి ఇక్కడ ఇవ్వవద్దు.
+            </p>
+            <div style="display: flex; justify-content: center; margin-top: 15px;">
+                <span style="display: inline-block; font-size: 1.1rem; font-weight: bold; color: #c53030; background-color: #ffffff; padding: 8px 20px; border-radius: 8px; border-left: 5px solid #e53e3e; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    👉 వాడుకోవడానికి పనికివచ్చే మంచి స్థితిలో ఉన్న వస్తువులను మాత్రమే సమర్పించాల్సిందిగా విజ్ఞప్తి.
+                </span>
+            </div>
+        </div>
+
+
+
+        <!-- How to Donate -->
+       <p style="text-align: center; font-size: 1.1rem; line-height: 1.8; color: #2d3748; margin: 15px 0;">
+            మీరు డొనేట్ చేయాలనుకునే వస్తువులను కింద తెలిపిన మా <b style="color: #1e3a8a; font-size: 1.2rem;">ARPAN</b> కలెక్షన్ సెంటర్‌కు నేరుగా వచ్చి అందజేయవచ్చు.<br>
+            <span style="font-weight: 600; color: #4a5568;">Working days 9.00 am to evening 7.30 pm . Sunday 9.00 am to 2.30 pm</span>
+        </p>
+        <!-- Contact Section with Actual Location Point Map -->
+        <h2 style="text-align: center;">📍 మా సేవా కేంద్రం (Collection Point)</h2>
+        
+               <!-- ARPAN Centered Contact Details Box Patch -->
+        <div class="contact-box" style="background: #fdfbf7; border: 4px solid #cbd5e1; padding: 30px; border-radius: 12px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; margin: 20px auto; max-width: 650px;">
+            <div class="contact-item" style="font-size: 1.25rem; color: #2d3748; font-weight: bold; margin: 0;">
+                📞 ఫోన్ నెంబర్: <span class="highlight" style="font-weight: 700; color: #111111; background: #ffffff; padding: 6px 15px; border-radius: 6px; border: 1px solid #cbd5e1; display: inline-block; margin-left: 5px;">0000000345</span>
+            </div>
+            <div class="contact-item" style="font-size: 1.15rem; color: #2d3748; font-weight: bold; margin: 0;">
+                📧 ఈమెయిల్ ఐడి: <span style="font-weight: 700; color: #111111; background: #ffffff; padding: 6px 15px; border-radius: 6px; border: 1px solid #cbd5e1; display: inline-block; margin-left: 5px;">arpancharity@gmail.com</span>
+            </div>
+            <div class="contact-item" style="font-size: 1.15rem; color: #2d3748; line-height: 1.6; margin: 0; max-width: 90%;">
+                🏠 చిరునామా: <span style="font-weight: 600; color: #111111;">RTC బస్టాండ్ ఎదురుగా, సత్తుపల్లి - 507303, ఖమ్మం జిల్లా, తెలంగాణ.</span>
+            </div>
+        </div>
+
+        </div>
+            
+           <!-- గూగుల్ మ్యాప్స్ డైరెక్ట్ బటన్ ప్యాచ్ -->
+<div style="margin-top: 25px; text-align: center;">
+    <a href="https://google.com" 
+       target="_blank" 
+       style="display: inline-block; background-color: #004d20; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-size: 18px; font-weight: bold; text-decoration: none; padding: 12px 25px; border-radius: 8px; border: 2px solid #cbd5e1; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-shadow: 1px 1px 1px #d4af37; transition: background 0.3s;">
+        📍 గూగుల్ మ్యాప్స్‌లో లొకేషన్ చూడండి (Open Live Map)
+    </a>
+</div>
+
+        </div>
+    </div>
+
+    <footer>
+          <!-- Local SVG Social Media Icons Patch -->
+    <div style="margin-bottom: 15px; display: flex; justify-content: center; gap: 25px;">
+      <!-- Facebook -->
+      <a href="https://facebook.com" target="_blank" style="transition: transform 0.2s; display: inline-block;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <!-- Twitter / X -->
+      <a href="https://twitter.com" target="_blank" style="transition: transform 0.2s; display: inline-block;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#1DA1F2"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank" style="transition: transform 0.2s; display: inline-block;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <!-- YouTube -->
+      <a href="https://youtube.com" target="_blank" style="transition: transform 0.2s; display: inline-block;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 00-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 002.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 002.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    </div>
+
+
+        <p>&copy; 2026 ARPAN Donation Platform. Beautifully Designed.</p>
+    </footer>    <script>
+        const donationData = {
+            phone: "0000000000",
+            address: "RTC బస్టాండ్ ఎదురుగా, సత్తుపల్లి - 507303, ఖమ్మం జిల్లా, తెలంగాణ."
+        };
+        document.getElementById("phone-number").innerText = donationData.phone;
+        document.getElementById("address").innerText = donationData.address;
+    </script>
+
